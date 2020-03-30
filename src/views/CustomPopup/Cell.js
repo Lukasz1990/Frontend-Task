@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import React, { useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux'
-import { removeDataSubCell } from '../redux/removeDataSubCell'
-import { addDataSubCell } from '../redux/addDataSubCell'
+import { removeDataSubCell } from '../../reducers/actions/removeDataSubCell'
+import { addDataSubCell } from '../../reducers/actions/addDataSubCell'
 import Popup from './Popup'
 
 const S = {
@@ -111,11 +111,11 @@ const S = {
 
 const Cell = ({ children,extended,smaller }) => {
 
-  const extendedCells = useSelector(state=>state.dataReducer.extendedCells)
+  const extendedCells = useSelector(state=>state.popupData.extendedCells)
   const dispatch = useDispatch()
   
   const [value, setValue] = useState('');
-  const [isOpen, toggleModal] = useState(false)
+  const [open, toggleModal] = useState(false)
 
   const onChangeHandler = (e) => {
     setValue(e.target.value)
@@ -136,7 +136,7 @@ const Cell = ({ children,extended,smaller }) => {
     
     return (
     <S.CellExtended extended={extended}>
-              <Popup  isOpen={isOpen} cancel={() => toggleModal(false)} onChangeHandler={onChangeHandler} addCellHandler={addCellHandler}/>
+              <Popup  open={open} cancel={() => toggleModal(false)} onChangeHandler={onChangeHandler} addCellHandler={addCellHandler}/>
       <S.Cell extended={extended}>
         {children}
       </S.Cell>

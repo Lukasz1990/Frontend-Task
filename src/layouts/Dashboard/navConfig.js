@@ -250,6 +250,10 @@ export default [
             href: '/components/cards'
           },
           {
+            title: 'CustomPopup',
+            href: '/components/customPopup',
+          },
+          {
             title: 'Chips',
             href: '/components/chips'
           },

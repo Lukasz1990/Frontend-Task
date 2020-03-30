@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Cell from '../components/Cell'
+import Cell from './Cell'
 import Popup from './Popup'
 import { useSelector,useDispatch } from 'react-redux'
-import { removeData } from '../redux/removeData'
-import { addData } from '../redux/addData'
+import { removeData } from '../../reducers/actions/removeData'
+import { addData } from '../../reducers/actions/addData'
 import { makeStyles } from '@material-ui/styles';
 import Page from 'src/components/Page';
-import { makeStyles } from '@material-ui/styles';
 import {
   Container,
   Divider,
@@ -16,6 +15,7 @@ import {
   colors,
   Button
 } from '@material-ui/core';
+
 
 const S = {
 
@@ -95,31 +95,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function CustomPopup  ({}) {
+const CustomPopup = ({}) => {
   
 
 
-  // const data = useSelector(state=>state.dataReducer.data)
-  // const dispatch = useDispatch()
+  const data = useSelector(state=>state.popupData.PopupData)
+  console.log(data)
+  const dispatch = useDispatch()
 
-  // const [value, setValue] = useState('');
-  // const [isOpen, toggleModal] = useState(false)
+  const [value, setValue] = useState('');
+  const [open, toggleModal] = useState(false)
 
-  // const onChangeHandler = (e) => {
-  //   setValue(e.target.value)
-  // }
+  const onChangeHandler = (e) => {
+    setValue(e.target.value)
+  }
 
-  // const addCellHandler = () => {
-  //   if (value !== '') {
-  //     dispatch(addData(
-  //       {
-  //         value,
-  //         'id':Math.random()
-  //       }
-  //     ))
-  //     toggleModal(false)        
-  //   }
-  // }
+  const addCellHandler = () => {
+    if (value !== '') {
+      dispatch(addData(
+        {
+          value,
+          'id':Math.random()
+        }
+      ))
+      toggleModal(false)        
+    }
+  }
   
 
   const classes = useStyles();
@@ -127,21 +128,21 @@ function CustomPopup  ({}) {
   return (
     <Page
       className={classes.root}
-      title="CustomPopup"
+      title="customPopup"
     >
       <Container maxWidth="md">
-       <S.People>People</S.People>
-        {/* <Popup  isOpen={isOpen} cancel={() => toggleModal(false)} onChangeHandler={onChangeHandler} addCellHandler={addCellHandler}/>
+       <S.People  className={classes.people}>People</S.People>
+        <Popup  open={open} cancel={() => toggleModal(false)} onChangeHandler={onChangeHandler} addCellHandler={addCellHandler}/>
         {data.map(({ id, value })=> (
           <Cell key={id} extended={value==='Ethncity'} >{value} 
             <S.IconContainer extended={value==='Ethncity'}>
-              <S.RemmoveIcon  src="../static/images/minus.png"  onClick={() => dispatch(removeData(id))}/>
+              <S.RemmoveIcon  src="./../../static/images/minus.png"  onClick={() => dispatch(removeData(id))}/>
             </S.IconContainer>
           </Cell>
         ))}
             <S.IconContainer add>
-              <S.AddIcon  src="../static/images/more.png"  onClick={() => toggleModal(true)}/>
-            </S.IconContainer> */}
+              <S.AddIcon  src="./../static/images/more.png"  onClick={() => toggleModal(true)}/>
+            </S.IconContainer>
 
      </Container>
      </Page>

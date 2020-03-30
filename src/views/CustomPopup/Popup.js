@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
 import {
   Modal,
   Card,
@@ -12,6 +9,10 @@ import {
   Divider,
   Button
 } from '@material-ui/core';
+import styled from 'styled-components'
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,59 +36,51 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function BaseModal({
-  open, onClose, className, ...rest
-}) {
+const S = {
+    Input: styled.input`
+    border-radius: 20px 20px 20px 20px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    outline-style: none;
+    background-color: transparent;
+    color: rgba(58, 67, 68, 0.6);
+    padding-left: 30px;
+    height:40px;
+    margin-left:10px;
+    `,
+ 
+}
+
+const Popup = ({open,cancel,addCellHandler,onChangeHandler,className,...rest}) => {
   const classes = useStyles();
 
-  if (!open) {
-    return null;
-  }
-  
-
   return (
-    <Modal
-      onClose={onClose}
-      open={open}
-    >
+    <Modal  open={open}>
       <Card
         {...rest}
         className={clsx(classes.root, className)}
-      >
-        <CardHeader title="Simple Modal" />
+      >   
+        <CardHeader>New cell</CardHeader>
         <Divider />
         <CardContent>
           <Typography variant="body1">
-            One fine body...
+          <S.Input type="text" name="text"  placeholder='add'  onChange={onChangeHandler} />
           </Typography>
         </CardContent>
-        <Divider />
         <CardActions className={classes.actions}>
-          <Button onClick={onClose}>
-            Dismiss
-          </Button>
-          <Button
-            color="primary"
-            onClick={onClose}
-            variant="contained"
-          >
-            Confirm
-          </Button>
+        <Button color="primary"  onClick={addCellHandler}>Add cell</Button>
+          <Button color="success"  onClick={cancel}>Cancel</Button>
         </CardActions>
-      </Card>
-    </Modal>
+        </Card> 
+     </Modal>
   );
 }
 
-BaseModal.propTypes = {
+Popup.propTypes = {
   className: PropTypes.string,
   onClose: PropTypes.func,
   open: PropTypes.bool
 };
 
-BaseModal.defaultProps = {
-  open: false,
-  onClose: () => {}
-};
-
-export default BaseModal;
+export default Popup;
