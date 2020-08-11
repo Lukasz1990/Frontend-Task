@@ -1,4 +1,2 @@
-export const ADD_DATA = 'ADD_DATA';
-export const REMOVE_DATA = 'REMOVE_DATA';
-export const REMOVE_DATA_SUBCELL = 'REMOVE_DATA_SUBCELL';
-export const ADD_DATA_SUBCELL = 'ADD_DATA_SUBCELL';
+export const FETCH_USERS = "FETCH_USERS";
+export const FETCH_REPO = "FETCH_REPO";
