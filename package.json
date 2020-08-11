@@ -1,5 +1,5 @@
 {
-  "name": "react_interview_task",
+  "name": "frontend_task",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -16,10 +16,6 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.6",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.1",
